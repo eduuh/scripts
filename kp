@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Author edwin kamau Muraya
+# Dec: Kill Application running a t a specific port.
+
+PORT=$1
+PROCESS_ID=$(lsof -t -i:${PORT})
+
+kill -9 ${PROCESS_ID}
+echo "Process Killed "
+
