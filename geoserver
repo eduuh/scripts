@@ -1,0 +1,1 @@
+docker run --name edwin -e SAMPLE_DATA=true -e GEOSERVER_ADMIN_USER=eduuh -e GEOSERVER_ADMIN_PASSWORD=geoserver -p 8080:8080  kartoza/geoserver
