@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Toggle on/off an thirdal monitor, HDMI does not support audio over HDMI as it's pretending that it's DVI
+
+main="$1"
+second="$2"
+third="$3"
+
+extramonitor() {
+  case "$1" in
+      "disconnect") xrandr --output HDMI1 --off  --auto ;;
+      "main+second") xrandr --output HDMI1 --left-of eDP1 --auto ;;
+      *) notify-send "Multi Monitor" "Unknown Operation" ;;
+  esac
+}
+
+selection=$(printf "main+second\ndisconnect\nduplicate" | dmenu -i -p "Monitor Configuration")
+extramonitor "$selection" && fixdualhead -pd "1 2 3 4 5 6 7" -p "$main" -s "$second" -sd "8 9 0"
